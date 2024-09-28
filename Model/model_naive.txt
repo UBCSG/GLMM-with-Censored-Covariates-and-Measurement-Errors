@@ -1,0 +1,15 @@
+
+[LONGITUDINAL]
+input = {gamma0}
+
+
+EQUATION:
+lp1 = gamma0
+
+DEFINITION:
+Level = {type=categorical, categories={0,1}
+    logit(P(Level=1)) = lp1
+}
+
+OUTPUT:
+output = {Level}

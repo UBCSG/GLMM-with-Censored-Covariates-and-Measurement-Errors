@@ -1,0 +1,16 @@
+
+[LONGITUDINAL]
+input = {alpha0, alpha1, alpha2, gamma0, gamma1}
+
+
+EQUATION:
+Y =  alpha0 + alpha1 * t + alpha2 * (t)^2
+lp1 = gamma0 + gamma1 * Y 
+
+DEFINITION:
+Level = {type=categorical, categories={0,1}
+    logit(P(Level=1)) = lp1
+}
+
+OUTPUT:
+output = {Y, Level}

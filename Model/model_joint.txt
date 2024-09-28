@@ -1,0 +1,21 @@
+
+[LONGITUDINAL]
+input = {p1,b1,p2,beta1, beta2, beta3, beta4, gamma0, gamma1, decay, reboundnew,Ti}
+
+Ti = { use = regressor } 
+decay = { use = regressor }
+reboundnew = { use = regressor } 
+
+
+EQUATION:
+Y =  log10( exp(p1-b1*t) + exp(p2))*decay + (beta1 * (t-Ti) / ((t-Ti)  + exp( beta2 - beta3 * (t-Ti))) + beta4 )*reboundnew
+lp1 = gamma0 + gamma1 * Y 
+
+DEFINITION:
+Level = {type=categorical, categories={0,1}
+    logit(P(Level=1)) = lp1
+}
+
+OUTPUT:
+output = {Y, Level}
+
