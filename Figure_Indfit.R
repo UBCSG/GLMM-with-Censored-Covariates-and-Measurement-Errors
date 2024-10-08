@@ -145,19 +145,19 @@ for (B in 1:200){
                      standardErrorEstimation=T,
                      logLikelihoodEstimation=T)
   scenario$linearization = FALSE
-  setCorrelationBlocks(ID = list(c("b1", "beta1", "beta2", "beta3")))
-  setIndividualParameterVariability(p1 = TRUE, b1 = TRUE, p2 = TRUE, beta1 = TRUE, beta2 = TRUE,beta3 = TRUE,beta4 = TRUE, gamma0 = TRUE, gamma1 = FALSE)
-  setIndividualParameterDistribution(p1="normal",b1="normal",p2="normal",beta1="normal",beta2="normal",beta3="normal",beta4="normal", gamma0="normal", gamma1="normal")
-  setPopulationParameterInformation(p1_pop = list(initialValue = 11), 
-                                    b1_pop = list(initialValue = 0.3), 
-                                    p2_pop = list(initialValue = 5.7), 
-                                    beta1_pop = list(initialValue = 1.4), 
-                                    beta2_pop = list(initialValue = 5), 
-                                    beta3_pop = list(initialValue = 0.2), 
-                                    beta4_pop = list(initialValue = 2.4), 
-                                    gamma0_pop = list(initialValue = 9.7), 
-                                    gamma1_pop  = list(initialValue = -2))
-  setCovariateModel(b1 = c(age_st = TRUE))
+  setCorrelationBlocks(ID = list(c("alpha2", "alpha4", "alpha5", "alpha6")))
+  setIndividualParameterVariability(alpha1 = TRUE, alpha2 = TRUE, alpha3 = TRUE, alpha4 = TRUE, alpha5 = FALSE, alpha6 = TRUE, alpha7 = FALSE, beta0 = TRUE, beta1 = FALSE)
+  setIndividualParameterDistribution(alpha1="normal",alpha2="normal",alpha3="normal",alpha4="normal",alpha5="normal",alpha6="normal",alpha7="normal", beta0="normal", beta1="normal")
+  setPopulationParameterInformation(alpha1_pop = list(initialValue = 11), 
+                                    alpha2_pop = list(initialValue = 0.3),
+                                    alpha3_pop = list(initialValue = 5.7),
+                                    alpha4_pop = list(initialValue = 1.4),
+                                    alpha5_pop = list(initialValue = 5),
+                                    alpha6_pop = list(initialValue = 0.2),
+                                    alpha7_pop = list(initialValue = 2.4),
+                                    beta0_pop = list(initialValue = 9.7), 
+                                    beta1_pop  = list(initialValue = -2))
+  setCovariateModel(alpha2 = c(age_st = TRUE))
   # run the estimation
   setScenario(scenario)
   runScenario()
