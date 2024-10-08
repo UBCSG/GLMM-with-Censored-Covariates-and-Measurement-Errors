@@ -1,11 +1,11 @@
 
 [LONGITUDINAL]
-input = {alpha0, alpha1, alpha2, gamma0, gamma1}
+input = {alpha0, alpha1, alpha2, beta0, beta1}
 
 
 EQUATION:
 Y =  alpha0 + alpha1 * t + alpha2 * (t)^2
-lp1 = gamma0 + gamma1 * Y 
+lp1 = beta0 + beta1 * Y 
 
 DEFINITION:
 Level = {type=categorical, categories={0,1}

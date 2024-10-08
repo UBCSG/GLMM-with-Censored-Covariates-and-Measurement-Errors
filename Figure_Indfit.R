@@ -8,13 +8,13 @@ setwd(here::here())
 
 ### For joint models 
 # Import the cleaned data and individual fits
-indparest <- read.csv(here::here("Data/Other/indest_with_cov.csv"), header = TRUE)
-indparestemp <- read.csv(here::here("Data/Other/indest_with_cov_empirical.csv"), header = TRUE)
+indparest <- read.csv(here::here("DataAnalysis/Results/indest_with_cov_new.csv"), header = TRUE)
+indparestemp <- read.csv(here::here("DataAnalysis/Results/indest_with_cov_empirical.csv"), header = TRUE)
 data <- read.csv(here::here("Data/Cleaned_data/full2dat_cleaned_with_cov.csv"), header = TRUE)
 data_emp <- data %>% 
   mutate(day = day/30)
-results_new <- read.csv(here::here("Results/results_with_cov_new.csv"), header = TRUE)
-results_empirical <- read.csv(here::here("Results/results_with_cov_empirical.csv"), header = TRUE)
+results_new <- read.csv(here::here("DataAnalysis/Results/results_with_cov_new.csv"), header = TRUE)
+results_empirical <- read.csv(here::here("DataAnalysis/Results/results_with_cov_empirical.csv"), header = TRUE)
 SE <- results_new$Standard.Error
 # patid 610282 
 pat1 <- data %>% filter(patid == 610282 & name == "rna") 
@@ -116,7 +116,7 @@ fun3 <- function(x){
 allpatid <- unique(data$patid)
 n <- length(allpatid)
 pat3.ind <- data.frame()
-for (B in 6:200){
+for (B in 1:200){
   print(glue::glue("B = ",B))
   datanew <- data.frame()
   for (i in 1:n){
@@ -126,12 +126,12 @@ for (B in 6:200){
       mutate(ID = paste0(sampled_patient,".",i))
     datanew <- rbind(datanew, sampled_data)
   }
-  write.csv(datanew, "Chapter3/Data/Other/sampled_data.csv", row.names = FALSE)
+  write.csv(datanew, "Data/Other/sampled_data.csv", row.names = FALSE)
   # Read in data for Monolix
-  data_new = list(dataFile = paste0('Chapter3/Data/Other/sampled_data.csv'),
+  data_new = list(dataFile = paste0('Data/Other/sampled_data.csv'),
                   headerTypes =c("ignore","time","ignore","cens","limit","regressor","regressor","ignore", "ignore","ignore", "contcov","contcov","contcov","contcov", "obsid","observation","regressor","id"),
                   observationTypes =list(CD4 = "categorical", rna = "continuous"))
-  modelFile = paste0('Chapter3/Model/model_joint.txt')
+  modelFile = paste0('Model/model_joint.txt')
   # create a new project by setting a data set and a structural model
   newProject(data = data_new, modelFile = modelFile)
   # set error model and observation distribution

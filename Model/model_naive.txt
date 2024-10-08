@@ -1,10 +1,10 @@
 
 [LONGITUDINAL]
-input = {gamma0}
+input = {beta0}
 
 
 EQUATION:
-lp1 = gamma0
+lp1 = beta0
 
 DEFINITION:
 Level = {type=categorical, categories={0,1}
